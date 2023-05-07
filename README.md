@@ -1,8 +1,8 @@
-# RPM-OSTree Updater & Waybar Applet
+# GUI Updater & Waybar Applet for Fedora Sericea
 
 This repository contains a shell script and Waybar applet specifically designed for Fedora Sericea to manage RPM-OSTree updates and notifications. The script uses Rofi to create windows for user interaction. Modifications might be required to make it work on other distributions.
 
-Flatpak support might be added. I'll look into it when I have some more time.
+Flatpak integration is in the works, and should be done tomorrow.
 
 ## Demo
 
