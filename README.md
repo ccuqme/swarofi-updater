@@ -53,17 +53,17 @@ Replace `path/to/rpm-ostree-updater` with the actual path to the repository.
 Now you should see the update notifications in your Waybar and be able to run the RPM-OSTree updater script.
 
 ## Customization
-Rofi Appearance
+### Rofi Appearance
 To customize the Rofi appearance, modify the .rasi theme files located in the themes directory. This style is a barely customized version of "style-1" from [github.com/adi1090x/rofi/tree/master/files/applets](https://github.com/adi1090x/rofi/tree/master/files/applets), so the other styles should work by changing window width to 820px, and listview layout to "horizontal". I don't think I changed anything else.
 
-## Color Schemes
+### Color Schemes
 To change the color scheme, edit the `shared/colors.rasi` file by changing the import line, for example:
 
 ```arduino
 @import "~/.config/rofi/colors/dracula.rasi"
 ```
 
-###  Available color schemes:
+####  Available color schemes:
 
 * adapta
 * arc
