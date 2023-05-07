@@ -5,7 +5,10 @@ This repository contains a shell script and Waybar applet specifically designed 
 Flatpak support might be added. I'll look into it when I have some more time.
 
 ## Demo
-[ostreeupdater.webm](https://user-images.githubusercontent.com/63260355/236698872-e0f59e36-4ede-400e-94eb-b8a3cec3e4d2.webm)
+
+
+https://user-images.githubusercontent.com/63260355/236698967-b7fae5b7-2e57-4173-8e7f-1576543cf9ae.mp4
+
 
 ## Applet Screenshot
 
