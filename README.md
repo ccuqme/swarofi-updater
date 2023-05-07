@@ -48,7 +48,7 @@ Now you should see the update notifications in your Waybar and be able to run th
 
 ## Customization
 ### Rofi Appearance
-To customize the Rofi appearance, modify the style-1.rasi file. This style is a barely customized version of "style-1" from [github.com/adi1090x/rofi/tree/master/files/applets](https://github.com/adi1090x/rofi/tree/master/files/applets), so the other styles from this repo should work by changing window width to 820px, and listview layout to "horizontal". I don't think I changed anything else.
+To customize the Rofi appearance, modify the style-1.rasi file. This style is a barely customized version of type-1 and style-1 from [github.com/adi1090x/rofi/tree/master/files/applets](https://github.com/adi1090x/rofi/tree/master/files/applets), so the other styles from this repo should work by changing window width to 820px, and listview layout to "horizontal". I don't think I changed anything else.
 
 ### Color Schemes
 To change the color scheme, edit the `shared/colors.rasi` file by changing the import line, for example:
