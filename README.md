@@ -41,8 +41,8 @@ git clone https://github.com/yourusername/rpm-ostree-updater-waybar.git
     "format": "Updates: {}",
     "interval": 3600,
     "return-type": "json",
-    "exec": "path/to/rpm-ostree-updater-waybar/rpm-ostree_applet.sh",
-    "on-click": "path/to/rpm-ostree-updater-waybar/rpm-ostree_updater.sh"
+    "exec": "path/to/rpm-ostree-updater/rpm-ostree_applet.sh",
+    "on-click": "path/to/rpm-ostree-updater/rpm-ostree_updater.sh"
   }
 }
 ```
