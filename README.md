@@ -14,14 +14,6 @@ https://user-images.githubusercontent.com/63260355/236698967-b7fae5b7-2e57-4173-
 
 ![Waybar Applet Screenshot](https://i.imgur.com/4HNa6Wk.png)
 
-## Features
-
-- Check for available updates
-- Update your system with RPM-OSTree
-- Display update notifications in Waybar
-- Customize Rofi appearance with theme files
-- Change the color scheme
-
 ## Usage
 
 1. Clone this repository to your desired location:
