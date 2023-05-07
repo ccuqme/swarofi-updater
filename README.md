@@ -5,8 +5,7 @@ This repository contains a shell script and Waybar applet specifically designed 
 Flatpak support might be added. I'll look into it when I have some more time.
 
 ## Demo
-
-![Rofi Menu GIF](https://i.imgur.com/AJpQzzi.gif)
+[ostreeupdater.webm](https://user-images.githubusercontent.com/63260355/236698872-e0f59e36-4ede-400e-94eb-b8a3cec3e4d2.webm)
 
 ## Applet Screenshot
 
