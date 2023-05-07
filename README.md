@@ -48,7 +48,9 @@ git clone https://github.com/yourusername/rpm-ostree-updater-waybar.git
 ```
 Replace `path/to/rpm-ostree-updater` with the actual path to the repository.
 
-4. Reload your Waybar configuration (By reloading Sway)
+4. Add `custom/rpm-ostree_upgrade` to left, center or right module (e.g. `"modules-right": ["custom/rpm-ostree_upgrade", "tray", "idle_inhibitor", "pulseaudio", "clock"]`)
+
+5. Reload your Waybar configuration (By reloading Sway)
 
 Now you should see the update notifications in your Waybar and be able to run the RPM-OSTree updater script.
 
