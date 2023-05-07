@@ -19,7 +19,7 @@ https://user-images.githubusercontent.com/63260355/236698967-b7fae5b7-2e57-4173-
 1. Clone this repository to your desired location:
 
 ```bash
-git clone https://github.com/yourusername/rpm-ostree-updater-waybar.git
+git clone https://github.com/ccuqme/rpm-ostree_updater.git
 ```
 
 2. Make the scripts rpm-ostree_updater.sh and rpm-ostree_applet.sh executable:
