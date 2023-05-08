@@ -24,7 +24,7 @@ git clone https://github.com/ccuqme/swr-gui-updater.git
 
 2. Make the scripts rpm-ostree_updater.sh and rpm-ostree_applet.sh executable:
 
-```chmod +x rpm-ostree-updater/rpm-ostree_updater.sh rpm-ostree-updater/rpm-ostree_applet.sh```
+```chmod +x swr-gui-updater/rpm-ostree_updater.sh rpm-ostree-updater/rpm-ostree_applet.sh```
 
 3. Configure the Waybar applet by adding the following to your Waybar configuration file:
 ```json
