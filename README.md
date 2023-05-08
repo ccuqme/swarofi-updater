@@ -11,9 +11,14 @@ This repository contains a shell script and a Waybar applet specifically designe
 [Swarofi](https://user-images.githubusercontent.com/63260355/236719998-e2eca2ac-5def-4ac6-80cc-9d3f7973f09b.webm)
 
 
-## Applet Screenshot
+## Screenshots
 
-![Waybar Applet Screenshot](https://i.imgur.com/4HNa6Wk.png)
+### Updater
+![updates](https://user-images.githubusercontent.com/63260355/236722299-7d7efce0-b902-4c58-aba0-fa99605f3377.png)
+![updated](https://user-images.githubusercontent.com/63260355/236722306-56248ed9-5d49-4150-b5b7-26c3f23c1146.png)
+### Applet
+![applet](https://user-images.githubusercontent.com/63260355/236722308-8ac29db4-a01f-46e4-9f78-ca9f62a04897.png)
+
 
 ## Usage
 
