@@ -61,7 +61,7 @@ To customize the Rofi appearance, modify the style-1.rasi file. This style is a 
 To change the color scheme, edit the `shared/colors.rasi` file by changing the import line, for example:
 
 ```arduino
-@import "~/.config/rofi/colors/dracula.rasi"
+@import ./colors/dracula.rasi"
 ```
 
 ####  Available color schemes:
