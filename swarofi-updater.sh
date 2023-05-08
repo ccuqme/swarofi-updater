@@ -44,13 +44,13 @@ else
 fi
 update_options+="Cancel"
 update_message="$update_message"
-selected_option="$(echo -e "$update_options" | rofi -dmenu -i -mesg "$update_message" -p "Updates" -theme ${dir}/${theme}.rasi)"
+selected_option="$(echo -e "$update_options" | rofi -dmenu -i -mesg "$update_message" -p "Updates" -theme "${dir}/${theme}.rasi")"
 
 case "$selected_option" in
   "Update all")
     confirmation="$(echo -e "Yes\nNo" | rofi -dmenu -i -mesg "Are you sure you want to update both your system and Flatpak apps?" -p "Confirm Update" -theme ${dir}/${theme}.rasi)"
     if [ "$confirmation" == "Yes" ]; then
-      rofi -e "Updating..." -theme ${theme}.rasi &
+      rofi -e "Updating..." -theme "${dir}/${theme}.rasi" &
       rofi_pid=$!
       output=$(rpm-ostree upgrade | grep -v "Run \"systemctl reboot\" to start a reboot")
       flatpak update -y
@@ -72,7 +72,7 @@ case "$selected_option" in
   "Update system")
     confirmation="$(echo -e "Yes\nNo" | rofi -dmenu -i -mesg "Are you sure you want to update your system?" -p "Confirm Update" -theme ${dir}/${theme}.rasi)"
     if [ "$confirmation" == "Yes" ]; then
-      rofi -e "Updating..." -theme ${theme}.rasi &
+      rofi -e "Updating..." -theme "${dir}/${theme}.rasi" &
       rofi_pid=$!
       output=$(rpm-ostree upgrade | grep -v "Run \"systemctl reboot\" to start a reboot")
       kill $rofi_pid
@@ -93,7 +93,7 @@ case "$selected_option" in
   "Update Flatpak")
     confirmation="$(echo -e "Yes\nNo" | rofi -dmenu -i -mesg "Are you sure you want to update Flatpak apps?" -p "Confirm Update" -theme ${dir}/${theme}.rasi)"
     if [ "$confirmation" == "Yes" ]; then
-      rofi -e "Updating..." -theme ${theme}.rasi &
+      rofi -e "Updating..." -theme "${dir}/${theme}.rasi" &
       rofi_pid=$!
       flatpak update -y
       kill $rofi_pid
