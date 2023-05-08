@@ -7,10 +7,16 @@ current_commit="$(rpm-ostree status --json | jq -r '.deployments[] | select(.boo
 upgrade_check_output="$(rpm-ostree upgrade --check 2>&1)"
 available_updates=$(echo "$upgrade_check_output" | grep -E 'AvailableUpdate:|No updates available.' || true)
 
-flatpak_update_check_output="$(flatpak remote-ls --updates --columns=ref,origin)"
+flatpak_update_check_output="$(flatpak remote-ls --updates --columns=ref,version)"
 if [[ -n "$flatpak_update_check_output" ]]; then
   flatpak_num_updates=$(echo "$flatpak_update_check_output" | wc -l)
-  flatpak_updates_formatted=$(echo "$flatpak_update_check_output" | awk -F '/' '{print NR ".  " $2}' | sed 's/^ *//;s/ *$//' | sed 's/^/  /')
+  flatpak_current_versions=$(flatpak list --app --columns=application,version)
+  flatpak_updates_formatted=$(echo "$flatpak_update_check_output" | awk -F '/' '{print $2}' | while read -r app; do
+  current_version=$(echo "$flatpak_current_versions" | grep -E "^$app\s" | awk '{print $2}')
+  new_version=$(flatpak remote-ls --updates --columns=ref,version | grep -E "^app/$app/" | awk '{print $2}')
+  echo "  $app $current_version → $new_version"
+done)
+
   flatpak_update_message="Flatpak updates available: $flatpak_num_updates\n$flatpak_updates_formatted\n"
   flatpak_update_options="Update Flatpak\n"
 else
@@ -45,6 +51,12 @@ fi
 update_options+="Cancel"
 update_message="$update_message"
 selected_option="$(echo -e "$update_options" | rofi -dmenu -i -mesg "$update_message" -p "Updates" -theme "${dir}/${theme}.rasi")"
+
+get_current_flatpak_version() {
+  app_id="$1"
+  current_version=$(flatpak list --app --columns=application,version | grep "$app_id" | awk '{print $2}')
+  echo "$current_version"
+}
 
 case "$selected_option" in
   "Update all")
