@@ -13,7 +13,7 @@ if [[ -n "$flatpak_update_check_output" ]]; then
   flatpak_updates_formatted=$(echo "$flatpak_update_check_output" | awk -F '/' '{print $2}' | while read -r app; do
   current_version=$(flatpak list --app --columns=application,version | grep -E "^$app\s" | awk '{print $2}')
   new_version=$(echo "$flatpak_update_check_output"| grep -E "^app/$app/" | awk '{print $2}')
-  echo "  $app $new_version → $current_version"
+  echo "  $app $current_version → $new_version"
 done)
 
   flatpak_update_message="Flatpak updates available: $flatpak_num_updates\n$flatpak_updates_formatted\n"
