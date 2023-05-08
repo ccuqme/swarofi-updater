@@ -2,7 +2,7 @@
 
 Swarofi (Sericea/Sway, Waybar, Rofi) Updater is a GUI Updater & Waybar Applet for Fedora Sericea.
 
-This repository contains a shell script and a Waybar applet specifically designed for Fedora Sericea to notify of updates and to update Flatpak and RPM-OSTree packages. The script uses Rofi to create windows for user interaction. Modifications be required to make it work on other RPM-OSTRee based distributions.
+This repository contains a shell script and a Waybar applet specifically designed for Fedora Sericea to notify of updates and to update Flatpak and RPM-OSTree packages. The script uses Rofi to create windows for user interaction. Modifications might be required to make it work on other OSTRee based distributions, and is definitely required for non-OSTRee based ones.
 
 
 ## Demo
