@@ -1,4 +1,4 @@
-# GUI Updater & Waybar Applet for Fedora Sericea
+# Swarofi (Sericea/Sway, Waybar, Rofi) Updater is a GUI Updater & Waybar Applet for Fedora Sericea
 
 This repository contains a shell script and Waybar applet specifically designed for Fedora Sericea to manage RPM-OSTree updates and notifications. The script uses Rofi to create windows for user interaction. Modifications might be required to make it work on other distributions.
 
@@ -33,12 +33,12 @@ git clone https://github.com/ccuqme/swr-gui-updater.git
     "format": "Updates: {}",
     "interval": 3600,
     "return-type": "json",
-    "exec": "path/to/swr-gui-updater/rpm-ostree_applet.sh",
-    "on-click": "path/to/swr-gui-updater/rpm-ostree_updater.sh"
+    "exec": "path/to/swarofi-updater/rpm-ostree_applet.sh",
+    "on-click": "path/to/swarofi-updater/rpm-ostree_updater.sh"
   }
 }
 ```
-Replace `path/to/swr-gui-updater` with the actual path to the repository.
+Replace `path/to/swarofi-updater` with the actual path to the repository.
 
 4. Add `custom/rpm-ostree_upgrade` to left, center or right module (e.g. `"modules-right": ["custom/rpm-ostree_upgrade", "tray", "idle_inhibitor", "pulseaudio", "clock"]`)
 
