@@ -76,6 +76,7 @@ case "$selected_option" in
           systemctl poweroff
           ;;
         "Close"|*)
+          pkill -SIGRTMIN+8 waybar
           ;;
       esac
     fi
@@ -97,6 +98,7 @@ case "$selected_option" in
           systemctl poweroff
           ;;
         "Close"|*)
+          pkill -SIGRTMIN+8 waybar
           ;;
       esac
     fi
@@ -112,6 +114,7 @@ case "$selected_option" in
       post_update_action="$(echo -e "Close" | rofi -dmenu -i -mesg "$(echo -e "Updated Flatpak apps:\n$flatpak_updates_formatted")" -p "Update completed" -theme ${dir}/${theme}.rasi)"
       case "$post_update_action" in
         "Close"|*)
+          pkill -SIGRTMIN+8 waybar
           ;;
       esac
     fi
