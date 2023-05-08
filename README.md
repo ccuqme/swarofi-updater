@@ -19,7 +19,7 @@ https://user-images.githubusercontent.com/63260355/236698967-b7fae5b7-2e57-4173-
 1. Clone this repository to your desired location:
 
 ```bash
-git clone https://github.com/ccuqme/rpm-ostree_updater.git
+git clone https://github.com/ccuqme/swr-gui-updater.git
 ```
 
 2. Make the scripts rpm-ostree_updater.sh and rpm-ostree_applet.sh executable:
@@ -33,12 +33,12 @@ git clone https://github.com/ccuqme/rpm-ostree_updater.git
     "format": "Updates: {}",
     "interval": 3600,
     "return-type": "json",
-    "exec": "path/to/rpm-ostree-updater/rpm-ostree_applet.sh",
-    "on-click": "path/to/rpm-ostree-updater/rpm-ostree_updater.sh"
+    "exec": "path/to/swr-gui-updater/rpm-ostree_applet.sh",
+    "on-click": "path/to/swr-gui-updater/rpm-ostree_updater.sh"
   }
 }
 ```
-Replace `path/to/rpm-ostree-updater` with the actual path to the repository.
+Replace `path/to/swr-gui-updater` with the actual path to the repository.
 
 4. Add `custom/rpm-ostree_upgrade` to left, center or right module (e.g. `"modules-right": ["custom/rpm-ostree_upgrade", "tray", "idle_inhibitor", "pulseaudio", "clock"]`)
 
