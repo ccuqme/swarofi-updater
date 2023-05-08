@@ -1,6 +1,8 @@
-# GUI Updater & Waybar Applet for Fedora Sericea
+# Swarofi Updater
 
-This repository contains a shell script and Waybar applet specifically designed for Fedora Sericea to manage RPM-OSTree updates and notifications. The script uses Rofi to create windows for user interaction. Modifications might be required to make it work on other distributions.
+Swarofi (Sericea/Sway, Waybar, Rofi) Updater is a GUI Updater & Waybar Applet for Fedora Sericea.
+
+This repository contains a shell script and Waybar applet specifically designed for Fedora Sericea to manage RPM-OSTree updates and notifications. The script uses Rofi to create windows for user interaction. Modifications be required to make it work on other RPM-OSTRee based distributions.
 
 Flatpak integration is in the works, and should be done tomorrow.
 
@@ -19,12 +21,12 @@ https://user-images.githubusercontent.com/63260355/236698967-b7fae5b7-2e57-4173-
 1. Clone this repository to your desired location:
 
 ```bash
-git clone https://github.com/ccuqme/rpm-ostree_updater.git
+git clone https://github.com/ccuqme/swr-gui-updater.git
 ```
 
 2. Make the scripts rpm-ostree_updater.sh and rpm-ostree_applet.sh executable:
 
-```chmod +x rpm-ostree-updater/rpm-ostree_updater.sh rpm-ostree-updater/rpm-ostree_applet.sh```
+```chmod +x swr-gui-updater/rpm-ostree_updater.sh rpm-ostree-updater/rpm-ostree_applet.sh```
 
 3. Configure the Waybar applet by adding the following to your Waybar configuration file:
 ```json
@@ -33,12 +35,12 @@ git clone https://github.com/ccuqme/rpm-ostree_updater.git
     "format": "Updates: {}",
     "interval": 3600,
     "return-type": "json",
-    "exec": "path/to/rpm-ostree-updater/rpm-ostree_applet.sh",
-    "on-click": "path/to/rpm-ostree-updater/rpm-ostree_updater.sh"
+    "exec": "path/to/swarofi-updater/rpm-ostree_applet.sh",
+    "on-click": "path/to/swarofi-updater/rpm-ostree_updater.sh"
   }
 }
 ```
-Replace `path/to/rpm-ostree-updater` with the actual path to the repository.
+Replace `path/to/swarofi-updater` with the actual path to the repository.
 
 4. Add `custom/rpm-ostree_upgrade` to left, center or right module (e.g. `"modules-right": ["custom/rpm-ostree_upgrade", "tray", "idle_inhibitor", "pulseaudio", "clock"]`)
 
