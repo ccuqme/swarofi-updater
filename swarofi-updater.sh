@@ -51,12 +51,6 @@ update_options+="Cancel"
 update_message="$update_message"
 selected_option="$(echo -e "$update_options" | rofi -dmenu -i -mesg "$update_message" -p "Updates" -theme "${dir}/${theme}.rasi")"
 
-get_current_flatpak_version() {
-  app_id="$1"
-  current_version=$(flatpak list --app --columns=application,version | grep "$app_id" | awk '{print $2}')
-  echo "$current_version"
-}
-
 case "$selected_option" in
   "Update all")
     confirmation="$(echo -e "Yes\nNo" | rofi -dmenu -i -mesg "Are you sure you want to update both your system and Flatpak apps?" -p "Confirm Update" -theme ${dir}/${theme}.rasi)"
@@ -119,7 +113,6 @@ case "$selected_option" in
       esac
     fi
     ;;
-
   "Cancel")
     ;;
 esac
