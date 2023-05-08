@@ -30,7 +30,11 @@ if [[ "$available_updates" != "No updates available." ]]; then
   update_message=$(echo -e "$update_message")
 else
   update_options=""
-  update_message="No RPM-OSTree updates available."
+  if [[ -z "$flatpak_update_options" ]]; then
+    update_message="No updates available."
+  else
+    update_message=$(echo -e "No RPM-OSTree updates available.\n$flatpak_update_message")
+  fi
 fi
 
 if [[ -n "$update_options" && -n "$flatpak_update_options" ]]; then
@@ -94,8 +98,7 @@ case "$selected_option" in
       flatpak update -y
       kill $rofi_pid
       updated_flatpaks=$(echo -e "$flatpak_updates_formatted" | sed 's/\\n/\n/g')
-      post_update_action="$(echo -e "Close" | rofi -dmenu -i -mesg "Updated Flatpak apps:
-      $flatpak_updates_formatted" -p "Update completed" -theme ${dir}/${theme}.rasi)"
+      post_update_action="$(echo -e "Close" | rofi -dmenu -i -mesg "$(echo -e "Updated Flatpak apps:\n$flatpak_updates_formatted")" -p "Update completed" -theme ${dir}/${theme}.rasi)"
       case "$post_update_action" in
         "Close"|*)
           ;;
