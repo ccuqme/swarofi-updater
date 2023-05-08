@@ -2,7 +2,7 @@
 
 Swarofi (Sericea/Sway, Waybar, Rofi) Updater is a GUI Updater & Waybar Applet for Fedora Sericea.
 
-This repository contains a shell script and a Waybar applet specifically designed for Fedora Sericea to notify of updates and to update Flatpak and RPM-OSTree packages. The script uses Rofi to create windows for user interaction. Modifications be required to make it work on other RPM-OSTRee based distributions.
+This repository contains a shell script and a Waybar applet specifically designed for Fedora Sericea to notify of updates and to update Flatpak and RPM-OSTree packages. The script uses Rofi to create windows for user interaction. Modifications might be required to make it work on other OSTRee based distributions, and is definitely required for non-OSTRee based ones.
 
 
 ## Demo
@@ -11,9 +11,14 @@ This repository contains a shell script and a Waybar applet specifically designe
 [Swarofi](https://user-images.githubusercontent.com/63260355/236719998-e2eca2ac-5def-4ac6-80cc-9d3f7973f09b.webm)
 
 
-## Applet Screenshot
+## Screenshots
 
-![Waybar Applet Screenshot](https://i.imgur.com/4HNa6Wk.png)
+### Updater
+![updates](https://user-images.githubusercontent.com/63260355/236722299-7d7efce0-b902-4c58-aba0-fa99605f3377.png)
+![updated](https://user-images.githubusercontent.com/63260355/236722306-56248ed9-5d49-4150-b5b7-26c3f23c1146.png)
+### Applet
+![applet](https://user-images.githubusercontent.com/63260355/236722308-8ac29db4-a01f-46e4-9f78-ca9f62a04897.png)
+
 
 ## Usage
 
@@ -23,14 +28,14 @@ This repository contains a shell script and a Waybar applet specifically designe
 git clone https://github.com/ccuqme/swarofi-updater.git
 ```
 
-2. Make the scripts rpm-ostree_updater.sh and rpm-ostree_applet.sh executable:
+2. Make the scripts swarofi-updater.sh and swarofi-applet.sh executable:
 
 ```chmod +x swarofi-updater/swarofi-updater.sh swarofi-updater/swarofi-applet.sh```
 
 3. Configure the Waybar applet by adding the following to your Waybar configuration file:
 ```json
 {
-  "custom/rpm_ostree": {
+  "custom/swarofi-updates": {
     "format": "Updates: {}",
     "interval": 3600,
     "return-type": "json",
@@ -45,7 +50,7 @@ Replace `path/to/swarofi-updater` with the actual path to the repository.
 
 5. Reload your Waybar configuration (By reloading Sway)
 
-Now you should see the update notifications in your Waybar and be able to run the RPM-OSTree updater script.
+Now you should see the update notifications in your Waybar when there is updates available. It should not show when there is 0 updates.
 
 ## Customization
 ### Rofi Appearance
