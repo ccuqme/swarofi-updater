@@ -41,6 +41,7 @@ git clone https://github.com/ccuqme/swarofi-updater.git
     "return-type": "json",
     "exec": "path/to/swarofi-updater/swarofi-applet.sh",
     "on-click": "path/to/swarofi-updater/swarofi-updater.sh"
+    "signal": 8
   }
 }
 ```
