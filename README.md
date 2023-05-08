@@ -9,7 +9,7 @@ Flatpak integration is in the works, and should be done tomorrow.
 ## Demo
 
 
-https://user-images.githubusercontent.com/63260355/236698967-b7fae5b7-2e57-4173-8e7f-1576543cf9ae.mp4
+[Swarofi](https://user-images.githubusercontent.com/63260355/236719998-e2eca2ac-5def-4ac6-80cc-9d3f7973f09b.webm)
 
 
 ## Applet Screenshot
@@ -21,12 +21,12 @@ https://user-images.githubusercontent.com/63260355/236698967-b7fae5b7-2e57-4173-
 1. Clone this repository to your desired location:
 
 ```bash
-git clone https://github.com/ccuqme/swr-gui-updater.git
+git clone https://github.com/ccuqme/swarofi-updater.git
 ```
 
 2. Make the scripts rpm-ostree_updater.sh and rpm-ostree_applet.sh executable:
 
-```chmod +x swr-gui-updater/rpm-ostree_updater.sh rpm-ostree-updater/rpm-ostree_applet.sh```
+```chmod +x swarofi-updater/swarofi-updater.sh swarofi-updater/swarofi-applet.sh```
 
 3. Configure the Waybar applet by adding the following to your Waybar configuration file:
 ```json
@@ -35,14 +35,14 @@ git clone https://github.com/ccuqme/swr-gui-updater.git
     "format": "Updates: {}",
     "interval": 3600,
     "return-type": "json",
-    "exec": "path/to/swarofi-updater/rpm-ostree_applet.sh",
-    "on-click": "path/to/swarofi-updater/rpm-ostree_updater.sh"
+    "exec": "path/to/swarofi-updater/swarofi-applet.sh",
+    "on-click": "path/to/swarofi-updater/swarofi-updater.sh"
   }
 }
 ```
 Replace `path/to/swarofi-updater` with the actual path to the repository.
 
-4. Add `custom/rpm-ostree_upgrade` to left, center or right module (e.g. `"modules-right": ["custom/rpm-ostree_upgrade", "tray", "idle_inhibitor", "pulseaudio", "clock"]`)
+4. Add `custom/swarofi-updates` to left, center or right module (e.g. `"modules-right": ["custom/swarofi-updates", "tray", "idle_inhibitor", "pulseaudio", "clock"]`)
 
 5. Reload your Waybar configuration (By reloading Sway)
 
