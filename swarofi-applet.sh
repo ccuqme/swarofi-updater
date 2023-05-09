@@ -4,8 +4,8 @@ set -euo pipefail
 check_updates() {
     upgrade_check_output=$(rpm-ostree upgrade --check 2>&1 || true)
     available_updates=$(echo "$upgrade_check_output" | grep 'AvailableUpdate:' || true)
-    flatpak_updates_output=$(flatpak remote-ls --updates 2>&1)
-    num_flatpak_updates=$(echo "$flatpak_updates_output" | grep -oP '^[^\s]+\s+[^\s]+' | wc -l)
+    flatpak_updates_output=$(flatpak remote-ls --updates 2>&1 || true)
+    num_flatpak_updates=$(echo "$flatpak_updates_output" | grep -oP '^[^\s]+\s+[^\s]+' | wc -l || true)
 
     num_rpm_ostree_updates=0
     if [ -n "$available_updates" ]; then
