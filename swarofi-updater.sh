@@ -87,7 +87,6 @@ case "$selected_option" in
       output+="\n─────────────────────\nUpdated Flatpak apps:\n$updated_flatpaks"
       kill $rofi_pid
       post_update_action="$(echo -e "Close" | rofi -dmenu -i -mesg "$(echo -e "$output")" -p "Update completed" -theme "${dir}"/${theme}.rasi)"
-
       handle_post_update
     fi
     ;;
@@ -110,6 +109,7 @@ case "$selected_option" in
       kill $rofi_pid
       updated_flatpaks=$(echo -e "$flatpak_updates_formatted" | sed 's/\\n/\n/g')
       post_update_action="$(echo -e "Close" | rofi -dmenu -i -mesg "$(echo -e "Updated Flatpak apps:\n$updated_flatpaks")" -p "Update completed" -theme "${dir}"/${theme}.rasi)"
+      pkill -SIGRTMIN+8 waybar
     fi
     ;;
   "Close")
