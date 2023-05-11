@@ -19,9 +19,22 @@ check_updates() {
         message="RPM-OSTree updates: $num_rpm_ostree_updates | Flatpak updates: $num_flatpak_updates"
         echo "$update_icon $total_updates"
         echo "$message"
-        notify-send "System Update Available" "$message"
+
+        last_update_count=0
+        if [ -f "/tmp/swarofi_last_update_count.txt" ]; then
+            last_update_count=$(cat /tmp/swarofi_last_update_count.txt)
+        fi
+
+        if [ "$last_update_count" -ne "$total_updates" ]; then
+            notify-send "System Update Available" "$message"
+            echo "$total_updates" > /tmp/swarofi_last_update_count.txt
+        fi
+
         return 0
     else
+        if [ -f "/tmp/swarofi_last_update_count.txt" ]; then
+            rm /tmp/swarofi_last_update_count.txt
+        fi
         return 1
     fi
 }
