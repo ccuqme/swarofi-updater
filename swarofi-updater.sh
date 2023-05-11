@@ -27,10 +27,10 @@ check_rpmostree_updates() {
 
 # Function to check Flatpak updates
 check_flatpak_updates() {
+  flatpak update --appstream
   flatpak_update_check_output="$(flatpak remote-ls --updates --columns=ref,version)"
 
   if [[ -n "$flatpak_update_check_output" ]]; then
-    flatpak update --appstream
     flatpak_num_updates=$(echo "$flatpak_update_check_output" | wc -l)
     flatpak_updates_formatted=$(echo "$flatpak_update_check_output" | awk -F '/' '{print $2}' | while read -r app; do
     current_version=$(flatpak list --app --columns=application,version | awk -v app="$app" '$1 == app {print $2}')
