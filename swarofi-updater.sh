@@ -83,10 +83,10 @@ case "$selected_option" in
       rofi -e "Updating..." -theme "${dir}/${theme}.rasi" &
       rofi_pid=$!
       output=$(rpm-ostree upgrade | grep -v "Run \"systemctl reboot\" to start a reboot")
+      flatpak_output=$(flatpak update -y | grep -E 'ID|Updates complete.' | tr -cd '\11\12\15\40-\176')  # Add this line
       updated_flatpaks=$(echo -e "$flatpak_updates_formatted" | sed 's/\\n/\n/g')
-      output+="\n─────────────────────\nUpdated Flatpak apps:\n$updated_flatpaks"
+      output+="\n─────────────────────\nUpdated Flatpak apps:\n$updated_flatpaks\n$flatpak_output"  # Update this line
       kill $rofi_pid
-      post_update_action="$(echo -e "Close" | rofi -dmenu -i -mesg "$(echo -e "$output")" -p "Update completed" -theme "${dir}"/${theme}.rasi)"
       handle_post_update
     fi
     ;;
