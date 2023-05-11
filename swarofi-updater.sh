@@ -85,7 +85,7 @@ case "$selected_option" in
       output=$(rpm-ostree upgrade | grep -v "Run \"systemctl reboot\" to start a reboot")
       flatpak_output=$(flatpak update -y | grep -E 'ID|Updates complete.' | tr -cd '\11\12\15\40-\176')  # Add this line
       updated_flatpaks=$(echo -e "$flatpak_updates_formatted" | sed 's/\\n/\n/g')
-      output+="\n─────────────────────\nUpdated Flatpak apps:\n$updated_flatpaks\n$flatpak_output"  # Update this line
+      output+="\n─────────────────────\nUpdated Flatpak apps:\n$updated_flatpaks\n$flatpak_output"
       kill $rofi_pid
       handle_post_update
     fi
