@@ -8,13 +8,13 @@ theme="style-1"
 check_rpmostree_updates() {
   current_commit="$(rpm-ostree status --json | jq -r '.deployments[] | select(.booted) | .checksum')"
   upgrade_check_output="$(rpm-ostree upgrade --check 2>&1)"
-  available_rpmostree_updates=$(echo "$upgrade_check_output" | grep -E 'AvailableUpdate:|No updates available.' || true)
+  available_rpmostree_updates=$(echo "$upgrade_check_output" | awk '/AvailableUpdate:|No updates available./' || true)
 
   if [[ "$available_rpmostree_updates" != "No updates available." ]]; then
-    num_updates=$(echo "$upgrade_check_output" | grep -oP '(?<=Diff: )[0-9]+')
-    version=$(echo "$upgrade_check_output" | grep -oP '(?<=Version: )[^\s]+')
-    commit=$(echo "$upgrade_check_output" | grep -oP '(?<=Commit: )[^\s]+')
-    gpg_signature=$(echo "$upgrade_check_output" | grep -oP '(?<=GPGSignature: )[^\n]+')
+    num_updates=$(echo "$upgrade_check_output" | awk -F ' ' '/Diff:/ {print $2}')
+    version=$(echo "$upgrade_check_output" | awk -F ' ' '/Version:/ {print $2}')
+    commit=$(echo "$upgrade_check_output" | awk -F ' ' '/Commit:/ {print $2}')
+    gpg_signature=$(echo "$upgrade_check_output" | awk -F ': ' '/GPGSignature:/ {print $2}')
 
     rpmostree_update_options="Update System\n"
     rpmostree_update_message="RPM-OSTree updates available: $num_updates\nVersion: $version\nCommit: $commit\nGPGSignature: $gpg_signature\n\n"
@@ -82,8 +82,8 @@ case "$selected_option" in
     if [ "$confirmation" == "Yes" ]; then
       rofi -e "Updating..." -theme "${dir}/${theme}.rasi" &
       rofi_pid=$!
-      output=$(rpm-ostree upgrade | grep -v "Run \"systemctl reboot\" to start a reboot")
-      flatpak_output=$(flatpak update -y | grep -E 'ID|Updates complete.' | tr -cd '\11\12\15\40-\176')  # Add this line
+      output=$(rpm-ostree upgrade | awk '!/Run "systemctl reboot" to start a reboot/')
+      flatpak_output=$(flatpak update -y | awk '/ID|Updates complete./' | tr -cd '\11\12\15\40-\176')
       updated_flatpaks=$(echo -e "$flatpak_updates_formatted" | sed 's/\\n/\n/g')
       output+="\n─────────────────────\nUpdated Flatpak apps:\n$updated_flatpaks\n$flatpak_output"
       kill $rofi_pid
@@ -95,7 +95,7 @@ case "$selected_option" in
     if [ "$confirmation" == "Yes" ]; then
       rofi -e "Updating..." -theme "${dir}/${theme}.rasi" &
       rofi_pid=$!
-      output=$(rpm-ostree upgrade | grep -v "Run \"systemctl reboot\" to start a reboot")
+      output=$(rpm-ostree upgrade | awk '!/Run "systemctl reboot" to start a reboot/')
       kill $rofi_pid
       handle_post_update
     fi
@@ -105,7 +105,7 @@ case "$selected_option" in
     if [ "$confirmation" == "Yes" ]; then
       rofi -e "Updating..." -theme "${dir}/${theme}.rasi" &
       rofi_pid=$!
-      output=$(flatpak update -y | grep -E 'ID|Updates complete.' | tr -cd '\11\12\15\40-\176')
+      output=$(flatpak update -y | awk '/ID|Updates complete./' | tr -cd '\11\12\15\40-\176')
       kill $rofi_pid
       updated_flatpaks=$(echo -e "$flatpak_updates_formatted" | sed 's/\\n/\n/g')
       post_update_action="$(echo -e "Close" | rofi -dmenu -i -mesg "$(echo -e "Updated Flatpak apps:\n$updated_flatpaks")" -p "Update completed" -theme "${dir}"/${theme}.rasi)"
