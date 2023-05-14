@@ -85,33 +85,30 @@ case "$selected_option" in
   "Update All")
     confirmation="$(echo -e "Yes\nNo" | rofi -dmenu -i -mesg "Are you sure you want to update both your system and Flatpak apps?" -p "Confirm Update" -theme "${dir}"/${theme}.rasi)"
     if [ "$confirmation" == "Yes" ]; then
-      rofi -e "Updating..." -theme "${dir}/${theme}.rasi" &
-      rofi_pid=$!
+      dunstify -r 1001 "Update Status" "Updating..."
       output=$(rpm-ostree upgrade | awk '!/Run "systemctl reboot" to start a reboot/')
       flatpak_output=$(flatpak update -y | awk '/ID|Updates complete./' | tr -cd '\11\12\15\40-\176')
       updated_flatpaks=$(echo -e "$flatpak_updates_formatted" | sed 's/\\n/\n/g')
       output+="\n─────────────────────\nUpdated Flatpak apps:\n$updated_flatpaks\n$flatpak_output"
-      kill $rofi_pid
+      dunstify -r 1001 "Update Status" "Update completed"
       handle_post_update
     fi
     ;;
   "Update System")
     confirmation="$(echo -e "Yes\nNo" | rofi -dmenu -i -mesg "Are you sure you want to update your system?" -p "Confirm Update" -theme "${dir}"/${theme}.rasi)"
     if [ "$confirmation" == "Yes" ]; then
-      rofi -e "Updating..." -theme "${dir}/${theme}.rasi" &
-      rofi_pid=$!
+      dunstify -r 1001 "Update Status" "Updating..."
       output=$(rpm-ostree upgrade | awk '!/Run "systemctl reboot" to start a reboot/')
-      kill $rofi_pid
+      dunstify -r 1001 "Update Status" "Update completed"
       handle_post_update
     fi
     ;;
   "Update Flatpak")
     confirmation="$(echo -e "Yes\nNo" | rofi -dmenu -i -mesg "Are you sure you want to update Flatpak apps?" -p "Confirm Update" -theme "${dir}"/${theme}.rasi)"
     if [ "$confirmation" == "Yes" ]; then
-      rofi -e "Updating..." -theme "${dir}/${theme}.rasi" &
-      rofi_pid=$!
+      dunstify -r 1001 "Update Status" "Updating..."
       output=$(flatpak update -y | awk '/ID|Updates complete./' | tr -cd '\11\12\15\40-\176')
-      kill $rofi_pid
+      dunstify -r 1001 "Update Status" "Update completed"
       updated_flatpaks=$(echo -e "$flatpak_updates_formatted" | sed 's/\\n/\n/g')
       post_update_action="$(echo -e "Close" | rofi -dmenu -i -mesg "$(echo -e "Updated Flatpak apps:\n$updated_flatpaks")" -p "Update completed" -theme "${dir}"/${theme}.rasi)"
       pkill -SIGRTMIN+8 waybar
