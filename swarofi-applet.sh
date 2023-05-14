@@ -26,7 +26,7 @@ check_updates() {
         fi
 
         if [ "$last_update_count" -ne "$total_updates" ]; then
-            dunstify "System Update Available" "$message"
+            dunstify -r 1616 "System Update Available" "$message"
             echo "$total_updates" > /tmp/swarofi_last_update_count.txt
         fi
 
