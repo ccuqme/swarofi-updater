@@ -34,8 +34,12 @@ check_flatpak_updates() {
     flatpak_num_updates=$(echo "$flatpak_update_check_output" | wc -l)
     flatpak_updates_formatted=$(echo "$flatpak_update_check_output" | awk -F '/' '{print $2}' | while read -r app; do
     current_version=$(flatpak list --app --columns=application,version | awk -v app="$app" '$1 == app {print $2}')
-    new_version=$(echo "$flatpak_update_check_output" | awk -v app="$app" '$0 ~ app {print $NF}')
-    echo "  $app $current_version → $new_version"
+    new_version=$(echo "$flatpak_update_check_output" | awk -v app="$app" '$0 ~ app && $2 != "" {print $NF}')
+    if [[ -n "$new_version" ]]; then
+      echo "  $app $current_version → $new_version"
+    else
+      echo "  $app "
+    fi
   done)
 
     flatpak_update_message="Flatpak updates available: $flatpak_num_updates\n$flatpak_updates_formatted\n"
@@ -45,6 +49,7 @@ check_flatpak_updates() {
     flatpak_update_options=""
   fi
 }
+
 
 # Function to handle post-update actions
 handle_post_update() {
