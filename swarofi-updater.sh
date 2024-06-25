@@ -18,7 +18,7 @@ check_rpmostree_updates() {
 
     rpmostree_update_options="Update System\n"
     rpmostree_update_message="RPM-OSTree updates available: $num_updates\nVersion: $version\nCommit: $commit\nGPGSignature: $gpg_signature\n\n"
-    rpmostree_update_message+="Diff output:\n$(rpm-ostree db diff "$current_commit" "$commit")\n"
+    rpmostree_update_message+="Diff output:\n<span size=\"small\">$(rpm-ostree db diff "$current_commit" "$commit" | tr '\n' ' ')</span>\n"
   else
     rpmostree_update_options=""
     rpmostree_update_message="No RPM-OSTree updates available.\n"
@@ -79,7 +79,7 @@ else
 fi
 
 update_options+="Close"
-selected_option="$(echo -e "$update_options" | rofi -dmenu -i -mesg "$update_message" -p "Updates" -theme "${dir}/${theme}.rasi")"
+selected_option="$(echo -e "$update_options" | rofi -dmenu -i -mesg "$update_message" -p "Updates" -theme "${dir}/${theme}.rasi" -theme-str 'window {width: 80%;}' )"
 
 case "$selected_option" in
   "Update All")
