@@ -41,7 +41,7 @@ git clone https://github.com/ccuqme/swarofi-updater.git
     "interval": 3600,
     "return-type": "json",
     "exec": "path/to/swarofi-updater/swarofi-applet.sh",
-    "on-click": "path/to/swarofi-updater/swarofi-updater.sh"
+    "on-click": "path/to/swarofi-updater/swarofi-updater.sh",
     "signal": 8
   }
 }
