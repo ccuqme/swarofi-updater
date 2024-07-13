@@ -1,5 +1,15 @@
 #!/bin/bash
 
+# skip updates on metered connections
+skip_metered() {
+    active_connection_uuid="$(nmcli -t -m multiline -f UUID connection show --active | head -n1 | cut -c 6-)"
+    is_metered=$(nmcli -t -m multiline -f connection.metered connection show "$active_connection_uuid" | cut -c 20-)
+    if [ "$is_metered" = "yes" ]; then
+        echo "connections is metered, skipping updates"
+        exit 0
+    fi
+}
+
 # Set variables
 dir="$(dirname "$(realpath "$0")")"
 theme="style-1"
@@ -67,6 +77,7 @@ handle_post_update() {
   esac
 }
 
+skip_metered
 check_rpmostree_updates
 check_flatpak_updates
 

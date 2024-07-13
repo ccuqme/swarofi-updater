@@ -1,6 +1,18 @@
 #!/bin/bash
 set -euo pipefail
 
+update_icon=""
+
+# skip updates check on metered connections
+skip_metered() {
+    active_connection_uuid="$(nmcli -t -m multiline -f UUID connection show --active | head -n1 | cut -c 6-)"
+    is_metered=$(nmcli -t -m multiline -f connection.metered connection show "$active_connection_uuid" | cut -c 20-)
+    if [ "$is_metered" = "yes" ]; then
+        echo "$update_icon (metered)"
+        exit 0
+    fi
+}
+
 check_updates() {
     upgrade_check_output=$(rpm-ostree upgrade --check 2>&1 || true)
     available_updates=$(echo "$upgrade_check_output" | grep 'AvailableUpdate:' || true)
@@ -15,7 +27,6 @@ check_updates() {
     if [ "$num_rpm_ostree_updates" -gt 0 ] || [ "$num_flatpak_updates" -gt 0 ]; then
         total_updates=$((num_rpm_ostree_updates + num_flatpak_updates))
 
-        update_icon=""
         message="RPM-OSTree updates: $num_rpm_ostree_updates | Flatpak updates: $num_flatpak_updates"
         echo "$update_icon $total_updates"
 
@@ -38,4 +49,5 @@ check_updates() {
     fi
 }
 
+skip_metered
 check_updates
