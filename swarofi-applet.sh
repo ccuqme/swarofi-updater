@@ -18,7 +18,6 @@ check_updates() {
         update_icon=""
         message="RPM-OSTree updates: $num_rpm_ostree_updates | Flatpak updates: $num_flatpak_updates"
         echo "$update_icon $total_updates"
-        echo "$message"
 
         last_update_count=0
         if [ -f "/tmp/swarofi_last_update_count.txt" ]; then
